@@ -19,7 +19,7 @@ SERVICE_FEE = 0.03 # this is a percentage.
 TOKEN_ADDRESS = '' # contract address
 MY_WALLET = '' # exchange's address
 BUYS_ENABLED = True
-TG_TOKEN_ID = '' # telegram bot's auth token
+TG_TOKEN_ID = '' # telegram bot's auth token. if blank, no tg alerts will be sent
 
 def notify_arena(username, tipped, amount, hashIn, hashOut):
     message = 'Thanks @%s for %s AVAX, your %s NOCHILL has been sent.<br/>%s' % (username, tipped, amount, make_snowtrace_link(hashOut))
@@ -39,20 +39,22 @@ def notify_arena(username, tipped, amount, hashIn, hashOut):
     r = requests.post('https://api.starsarena.com/threads', headers=headers, data=json.dumps(payload))
 
 def notify_dev(message):
-    TOKEN=TG_TOKEN_ID # your telegram bot's auth token
-    CHAT_ID='' # where your monitoring channel is
-    if message != '':
-        text = '%s' % (message)
-        bot = telegram.Bot(token=TOKEN)
-        bot.sendMessage(chat_id=CHAT_ID, text=text)
+    if TG_TOKEN_ID != '':
+        TOKEN=TG_TOKEN_ID # your telegram bot's auth token
+        CHAT_ID='' # where your monitoring channel is
+        if message != '':
+            text = '%s' % (message)
+            bot = telegram.Bot(token=TOKEN)
+            bot.sendMessage(chat_id=CHAT_ID, text=text)
 
 def notify_tg_group(message):
-    TOKEN=TG_TOKEN_ID # your telegram bot's auth token
-    CHAT_ID='' # your public channel where it will say "user tipped x to nochillexchange"
-    if message != '':
-        text = '%s' % (message)
-        bot = telegram.Bot(token=TOKEN)
-        bot.sendMessage(chat_id=CHAT_ID, text=text)
+    if TG_TOKEN_ID != '':
+        TOKEN=TG_TOKEN_ID # your telegram bot's auth token
+        CHAT_ID='' # your public channel where it will say "user tipped x to nochillexchange"
+        if message != '':
+            text = '%s' % (message)
+            bot = telegram.Bot(token=TOKEN)
+            bot.sendMessage(chat_id=CHAT_ID, text=text)
 
 def read_users_json():
     with open('users.json', 'r') as openfile: # users.json should exist in the same dir. this is a temporary fix to an arena problem.
