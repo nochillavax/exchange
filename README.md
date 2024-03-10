@@ -1,16 +1,25 @@
-
 # nochill exchange
-the legendary cook within the walls of the arena
+the first interactive app within the arena
+tip the bot avax, bot sends you nochill back
+performs a market trade on behalf of the tipper
 
-read the comments to configure. it's not the prettiest code. idc, i built most of this in 5-6 hours and have been adding to it since
+cleaned up and sped up. but ser its not at 100m+ yet? gfy
 
-have a to-do task to clean it up and speed it up.
+## setup
 
-maybe after 100m mcap
+install the requirements, copy env.sample to .env and give it your secrets
 
-# cron entries:
-#### */3 * * * * /usr/bin/python3 /path/to/exchange/dir/bot.py 2>&1 > /dev/null
+set up a schedule for it to run:
+
+## schedule config 
+### working cron entries
+
+see the demo @nochillexchange in arena: https://starsarena.com/?ref=nochillexchange
+
+#### * * * * * /usr/bin/python3 /path/to/exchange/dir/bot.py 2>&1 > /dev/null
 #### 0 0 * * * /usr/bin/python3 /path/to/exchange/dir/leaderboard.py 2>&1 > /dev/null
 #### * * * * * /usr/bin/python3 /path/to/exchange/dir/user_scraper.py 2>&1 > /dev/null
 
+
 send donations to 0xAb0fb9ea07CC64703e7954611CF37903bF2Cacdf (the nochill eco wallet)
+
