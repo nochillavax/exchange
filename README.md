@@ -1,7 +1,5 @@
 # nochill exchange
-the first interactive app within the arena
-tip the bot avax, bot sends you nochill back
-performs a market trade on behalf of the tipper
+the first interactive app within the arena. tip the bot avax, bot sends you nochill back. performs a market trade on behalf of the tipper
 
 powers @nochillexchange in the arena: https://starsarena.com/?ref=nochillexchange
 
