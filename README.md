@@ -24,3 +24,7 @@ set up a schedule for it to run:
   
 send donations to 0xAb0fb9ea07CC64703e7954611CF37903bF2Cacdf (the nochill eco wallet)
 
+
+# Attribution
+
+If you use this bot or any components internally in any way, please make sure to credit @nochillexchange or the NOCHILL project 
