@@ -117,6 +117,7 @@ def get_txns(conn):
             tx['hash'] = row[1]
             tx['amt'] = row[2]
             tx['user'] = row[6]
+            tx['nochill'] = row[4]
             #print(tx)
             all_txns.append(tx)
         return all_txns
@@ -134,10 +135,27 @@ def get_wallet(conn, username):
             return row[1]
     else:
         return None
-        
+
 def get_waiting_transfers(conn):
     cur = conn.cursor()
     cur.execute("SELECT * FROM txn WHERE transferTxn='x' AND amountOut != 'x';")
+    rows = cur.fetchall()
+    payables = []
+    for row in rows:
+        xfer = {}
+        xfer['amount'] = int(float(row[4])*10**18)
+        xfer['to'] = get_wallet(conn, row[6])
+        xfer['username'] = row[6]
+        xfer['amount_readable'] = row[4]
+        xfer['hash'] = row[1]
+        xfer['incoming'] = float(row[2])
+        payables.append(xfer)
+
+    return payables
+
+def get_pending_transfers(conn):
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM txn WHERE transferTxn='pending' AND amountOut != 'x';")
     rows = cur.fetchall()
     payables = []
     for row in rows:
